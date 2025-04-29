@@ -183,6 +183,7 @@ plt.xticks(rotation=45)
 
 plt.legend()
 plt.grid(True)
+
 plt.tight_layout()
 plt.savefig('train_vs_validation_accuracy.png')
 plt.close()

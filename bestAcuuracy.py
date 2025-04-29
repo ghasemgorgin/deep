@@ -180,6 +180,7 @@ plt.title('Train vs Validation Accuracy')
 plt.xlabel('Model')
 plt.ylabel('Accuracy')
 plt.xticks(rotation=45)
+
 plt.legend()
 plt.grid(True)
 plt.tight_layout()

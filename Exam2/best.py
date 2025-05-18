@@ -25,6 +25,7 @@ class ELMWrapper(BaseEstimator, ClassifierMixin):
         self.model.train(X, y_one_hot, "c")
         return self
 
+
     def predict(self, X):
         return np.argmax(self.model.predict(X), axis=1)
 

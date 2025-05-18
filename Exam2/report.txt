@@ -1,0 +1,56 @@
+Neurons: 1500
+Accuracy: 0.8850
+Precision: 0.8854
+Recall: 0.8850
+F1-Score: 0.8850
+Cross-Validation Mean: 0.8851
+Cross-Validation Std: 0.0014
+Time: 513.06 seconds
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.84      0.88      0.86      6484
+           1       0.88      0.85      0.86      6352
+           2       0.86      0.88      0.87      6253
+           3       0.91      0.89      0.90      6167
+           4       0.91      0.92      0.91      6455
+           5       0.91      0.89      0.90      6483
+
+    accuracy                           0.88     38194
+   macro avg       0.89      0.88      0.89     38194
+weighted avg       0.89      0.88      0.89     38194
+
+
+Best Configuration:
+Neurons: 1500
+Accuracy: 0.8850
+Precision: 0.8854
+Recall: 0.8850
+F1-Score: 0.8850
+Cross-Validation Mean: 0.8851
+Cross-Validation Std: 0.0014
+Time: 513.06 seconds
+
+Best Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.84      0.88      0.86      6484
+           1       0.88      0.85      0.86      6352
+           2       0.86      0.88      0.87      6253
+           3       0.91      0.89      0.90      6167
+           4       0.91      0.92      0.91      6455
+           5       0.91      0.89      0.90      6483
+
+    accuracy                           0.88     38194
+   macro avg       0.89      0.88      0.89     38194
+weighted avg       0.89      0.88      0.89     38194
+
+
+Process finished with exit code -1073741819 (0xC0000005)
+
+
+
+Neurons: 1500, Accuracy: 0.9477, Time: 256.46 seconds
+Neurons: 1000, Accuracy: 0.9475, Time: 232.41 seconds
+Neurons: 500, Accuracy: 0.9478, Time: 212.57 seconds

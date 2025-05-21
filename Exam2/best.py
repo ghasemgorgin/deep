@@ -10,6 +10,7 @@ from lightgbm import LGBMClassifier
 from sklearn.base import BaseEstimator, ClassifierMixin
 import time
 
+
 # تعریف Wrapper ساده برای ELM
 class ELMWrapper(BaseEstimator, ClassifierMixin):
     def __init__(self, n_neurons=1000, func='sigm'):

@@ -5,6 +5,7 @@ from sklearn.model_selection import KFold
 from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import StandardScaler
 import time
+import os
 
 # تنظیمات
 np.random.seed(42)
@@ -71,7 +72,7 @@ def run_elm(X, y, n_hidden, activation_func, name=''):
     return accuracies
 
 # مسیر داده‌ها
-file_path = '/content/danger/Dataset.csv'
+file_path = 'Exam2/data/Dataset.csv'
 X, y = load_data(file_path)
 
 # اجرای ELM برای دو تابع باقی‌مانده
@@ -90,5 +91,10 @@ plt.ylabel("Accuracy")
 plt.legend()
 plt.grid(True)
 plt.tight_layout()
-plt.savefig("activation_function_comparison.png")
+
+# Define output directory relative to the script location
+output_dir = 'outputs'
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
+plt.savefig(os.path.join(output_dir, "activation_function_comparison.png"))
 plt.show()

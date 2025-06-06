@@ -5,6 +5,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 import time
+import os
 
 # تنظیمات اولیه
 np.random.seed(42)
@@ -82,7 +83,7 @@ def run_elm(X, y, n_hidden, activation_func):
     return accuracies
 
 # مسیر فایل CSV خود را اینجا وارد کنید
-file_path = '/content/danger/Dataset.csv'
+file_path = 'Exam2/data/Dataset.csv'
 X, y = load_data(file_path)
 
 # اجرای مدل با تمام توابع فعال‌سازی و ذخیره نتایج
@@ -102,5 +103,10 @@ plt.xlabel('Fold')
 plt.ylabel('Accuracy')
 plt.legend()
 plt.grid(True)
-plt.savefig('activation_function_comparison.png')
+
+# Define output directory relative to the script location
+output_dir = 'outputs'
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
+plt.savefig(os.path.join(output_dir, 'activation_function_comparison.png'))
 plt.show()

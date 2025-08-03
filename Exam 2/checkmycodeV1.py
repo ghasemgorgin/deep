@@ -1,4 +1,5 @@
-3import numpy as np
+import numpy as np
+import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import accuracy_score
@@ -36,7 +37,7 @@ class ELMWrapper(BaseEstimator, ClassifierMixin):
         return self
 
 # بارگذاری دیتاست
-data = pd.read_csv("/Exam2/Dataset.csv")  # جایگزین با مسیر دیتاست شما
+data = pd.read_csv("Dataset.csv")  # جایگزین با مسیر دیتاست شما
 X = data.iloc[:, :-1].values  # 10 ستون ویژگی
 y = data.iloc[:, -1].values  # ستون کلاس
 
@@ -73,7 +74,7 @@ def evaluate_stacking(n_hidden):
     return accuracy, elapsed_time
 
 # آزمایش تعداد نورون‌های مختلف
-neuron_counts = [500, 1000, 1500, 2000]
+neuron_counts = [500]
 results = []
 
 for n in neuron_counts:

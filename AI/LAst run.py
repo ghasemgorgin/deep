@@ -107,7 +107,6 @@ def plot_confusion_matrix(cm, classes, title, filename):
     plt.close()
 
 
-# تابع برای رسم و ذخیره جدول گزارش طبقه‌بندی
 def plot_classification_report(report, title, filename):
     metrics = ['precision', 'recall', 'f1-score']
     classes = [str(i) for i in range(len(report) - 3)]
@@ -128,7 +127,6 @@ def plot_classification_report(report, title, filename):
     plt.close()
 
 
-# تابع برای رسم و ذخیره نمودار میله‌ای معیارها
 def plot_metrics_bar(report, title, filename):
     metrics = ['precision', 'recall', 'f1-score']
     classes = [str(i) for i in range(len(report) - 3)]
@@ -151,21 +149,19 @@ def plot_metrics_bar(report, title, filename):
     plt.close()
 
 
-# تابع برای آزمایش تعداد نورون‌های مختلف
 def evaluate_stacking(n_hidden):
     start_time = time.time()
 
-    # تعریف مدل ELM با Wrapper
+
     elm = ELMWrapper(n_neurons=n_hidden, func="sigm")
 
-    # تعریف مدل‌های پایه
     estimators = [
         ('elm', elm),
         ('rf', RandomForestClassifier(n_estimators=100, random_state=42)),
         ('lgbm', LGBMClassifier(num_leaves=31, learning_rate=0.05, n_estimators=100, random_state=42, verbose=-1))
     ]
 
-    # تعریف Stacking
+
     stacking = StackingClassifier(
         estimators=estimators,
         final_estimator=LogisticRegression(max_iter=1000),
@@ -173,16 +169,15 @@ def evaluate_stacking(n_hidden):
         stack_method='predict'
     )
 
-    # اعتبارسنجی متقاطع
+
     cv_scores = cross_val_score(stacking, X_train_scaled, y_train, cv=5, scoring='accuracy', error_score='raise')
     cv_mean = cv_scores.mean()
     cv_std = cv_scores.std()
 
-    # آموزش مدل روی کل داده‌های آموزشی
     stacking.fit(X_train_scaled, y_train)
     y_pred = stacking.predict(X_test_scaled)
 
-    # محاسبه دقت، گزارش طبقه‌بندی، و ماتریس درهم‌ریختگی
+
     accuracy = accuracy_score(y_test, y_pred)
     report = classification_report(y_test, y_pred, output_dict=True)
     conf_matrix = confusion_matrix(y_test, y_pred)
@@ -199,8 +194,6 @@ def evaluate_stacking(n_hidden):
 
     return accuracy, elapsed_time, cv_mean, cv_std, report, conf_matrix
 
-
-# آزمایش تعداد نورون‌های مختلف
 neuron_counts = [300,500]
 resultstwo = []
 
@@ -224,7 +217,7 @@ for n in neuron_counts:
     except Exception as e:
         print(f"Error evaluating with {n} neurons: {str(e)}")
 
-# انتخاب بهترین تعداد نورون
+
 best_result = max(resultstwo, key=lambda x: x[1], default=(0, 0.0, 0.0, 0.0, 0.0, {}, np.zeros((6, 6))))
 best_neurons, best_accuracy, best_time, best_cv_mean, best_cv_std, best_report, best_conf_matrix = best_result
 print("\n" + "=" * 50)
@@ -244,7 +237,6 @@ print(best_conf_matrix)
 print(f"\nMacro Avg Precision: {best_report.get('macro avg', {}).get('precision', 0.0):.4f}")
 print(f"Weighted Avg Precision: {best_report.get('weighted avg', {}).get('precision', 0.0):.4f}")
 
-# ذخیره نتایج عددی در فایل CSV
 results_df = pd.DataFrame([
     {
         'Neurons': n,

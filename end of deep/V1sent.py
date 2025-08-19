@@ -63,6 +63,7 @@ def evaluate_stacking(n_hidden):
         ('lgbm', LGBMClassifier(num_leaves=31, learning_rate=0.05, n_estimators=100, random_state=42))
     ]
 
+
     # تعریف Stacking
     stacking = StackingClassifier(estimators=estimators, final_estimator=LogisticRegression(max_iter=1000))
     stacking.fit(X_train_scaled, y_train)
